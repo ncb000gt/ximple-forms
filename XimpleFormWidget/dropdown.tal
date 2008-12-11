@@ -1,0 +1,10 @@
+<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+    <label tal:attributes="for this/id">
+        <span tal:condition="this/required" class="required">*</span>
+        <span tal:replace="this/label"/>
+    </label>
+    <select tal:attributes="name this/id; id this/id">
+        <option value="">--Select One--</option>
+        <option tal:repeat="option options" tal:content="option/title" tal:attributes="value option/value; selected option/selected"></option>
+    </select>
+</fieldset>

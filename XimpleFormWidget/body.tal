@@ -1,0 +1,6 @@
+<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+    <p>
+        <span tal:replace="this/label"/>
+        <span tal:replace="this/values"/>
+    </p>
+</fieldset>

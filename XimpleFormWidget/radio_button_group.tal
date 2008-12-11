@@ -1,0 +1,14 @@
+<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <div class="radio_buttons_sf">
+    <label>
+        <span tal:condition="this/required" class="required">*</span>
+        <span tal:replace="this/label"/>
+    </label>
+    <div class="radio_fieldset">
+      <fieldset tal:repeat="option options">
+        <input tal:attributes="name this/id; id string:${this/id}_${option/value}; value option/value; checked option/checked" type="radio"/>
+        <label tal:attributes="for string:${this/id}_${option/value}" tal:content="option/title"> </label>
+      </fieldset>
+    </div>
+  </div>
+</fieldset>

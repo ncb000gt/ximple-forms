@@ -1,0 +1,7 @@
+<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+    <label tal:attributes="for this/id">
+        <span tal:condition="this/required" class="required">*</span>
+        <span tal:replace="this/label"/>
+    </label>
+    <textarea tal:attributes="name this/id; id this/id;"><span tal:replace="selection|?selection|:this/values|?this.values|:string:"/></textarea>
+</fieldset>

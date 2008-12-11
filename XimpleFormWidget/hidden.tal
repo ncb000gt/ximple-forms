@@ -1,0 +1,3 @@
+<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal" style="display: none; visibility: hidden">
+    <input type="hidden" tal:attributes="name this/id; id this/id; value this/values"/>
+</fieldset>

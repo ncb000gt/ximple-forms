@@ -1,0 +1,14 @@
+<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+    <label tal:attributes="for this/id">
+        <span tal:condition="this/required" class="required">*</span>
+        <span tal:replace="this/label"/>
+    </label>
+    <input tal:attributes="name this/id; id this/id"/>
+    <script type="text/javascript">
+        dojo.require("dojo.widget.DropdownDatePicker");
+        var widget = dojo.widget.createWidget("DropdownDatePicker", {inputName: "<span tal:replace="this/id"/>"}, dojo.byId("<span tal:replace="this/id"/>"));
+        var now = new Date();
+        widget.inputNode.value = "<span tal:condition="selection" tal:replace="selection"/>" || "<span tal:replace="this/values"/>" || [now.getMonth(), now.getDate(), now.getFullYear()].join("/");
+        widget.inputNode.id = "<span tal:replace="this/id"/>";
+    </script>
+</fieldset>

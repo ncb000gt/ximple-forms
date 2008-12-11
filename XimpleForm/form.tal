@@ -1,0 +1,21 @@
+<div xmlns:tal="http://axiomstack.com/tale" class="form_builder">
+<!--  <script type="text/javascript" src="/static/scripts/validation.js"> </script> -->
+  <!-- <script type="text/javascript" tal:text="$">
+    //var validation_rules = ${rules};
+  </script> -->
+  <div>
+    <!-- <span tal:replace="validation_errors" /> -->
+    <p class="req"><span class="required">*</span> = required</p>
+
+    <h2 tal:content="this.title"> </h2>
+    <p tal:content="this.introduction"> </p>
+    <form tal:attr="action: this.getURI()+'process'" method="post" name="ximple_form" id="ximple_form">
+      <fieldset tal:repeat="widget: widgets" tal:replace="widget[widget](data)"> </fieldset>
+      <fieldset class="buttons">
+	<input type="submit" id="submit" value="Submit" />
+	<input type="reset" id="reset" value="Reset" />
+      </fieldset>
+    </form>
+    <p tal:content="this.boilerplate"> </p>
+  </div>
+</div>
