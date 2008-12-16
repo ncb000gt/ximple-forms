@@ -14,9 +14,6 @@ function process() {
         if (!session.data.errors) {
 	    session.data.errors = {};
 	}
-	if (!session.data.errors[this.id]) {
-	    session.data.errors[this.id] = [];
-	}
 
 	session.data.errors[this.id] = errors;
 	res.redirect(this.getURI());
@@ -42,23 +39,25 @@ function process() {
 	    );
         }
 
-	app.log(req.data.toSource());
-	app.log(req.data.http_referer.replace(/.*\/\/(.*[^\/:])(\/|:).*/,'$1'));
         var m = new axiom.Mail();
         m.setTo(this.recipient);
-        m.setFrom("noreply@"+req.data.http_referer.replace(/.*\/\/([^\/].*)\/.*/,'$1'), "XimpleForm Form Submission: " + this.title);
+        m.setFrom("noreply@"+req.data.http_host.replace(/(.*[^\:])\:.*/,'$1'), "XimpleForm Form Submission: " + this.title);
         m.setSubject(this.email_subject || this.title + ": Form Submission");
-    var adds = (this.bcc_recipients)?this.bcc_recipients.split(",").map(function(e) {return e.trim();}):[];
+	var adds = (this.bcc_recipients)?this.bcc_recipients.split(",").map(function(e) {return e.trim();}):[];
         adds = (this.cc_recipients)?this.cc_recipients.split(",").map(function(e) {return e.trim();}):[];
         m.addPart(this.email({fields: email_lines}).toXMLString(), null, "text/html");
         m.send();
 
-	var user = new axiom.Mail();
-        user.setTo(this.recipient);
-        user.setFrom(this.from_address, this.from_name);
-        user.setSubject(this.title + ": Form Submission");
-        user.addPart(this.email({fields: email_lines}).toXMLString(), null, "text/html");
-        user.send();
+/*	if (this.send_recip_email) {
+	    var recip = req.data[this.to_email_field.getTarget().id];
+	    app.log(recip);
+	    var user = new axiom.Mail();
+            user.setTo(this.recipient);
+            user.setFrom(this.from_address, this.from_name);
+            user.setSubject(this.title + ": Form Submission");
+            user.addPart(this.email({fields: email_lines}).toXMLString(), null, "text/html");
+            user.send();
+	}*/
 
         if (this.redirect_url) {
 	    res.redirect(this.redirect_url);

@@ -6,8 +6,8 @@
     <table cellpadding="0" cellspacing="0">
       <thead>
 	<tr>
-	  <th width="25%">Label</th>
-	  <th>Information</th>
+	  <th align="left" width="25%">Label</th>
+	  <th align="left">Information</th>
 	</tr>
       </thead>
       <tbody>

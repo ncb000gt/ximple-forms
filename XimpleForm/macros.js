@@ -1,17 +1,21 @@
-this.getSearchableProperties = function() {
+function getSearchableProperties() {
     return ['title','introduction','boilerplate'];
 }
 
-this.genValidation = function() {
+function genValidation() {
     var validators = [];
     var widgets = app.getObjects("XimpleFormWidget", {}, {sort: new Sort("rank", "asc"), path: this.path()});
-    for (var i in widgets) {
-        validators.push(widgets[i].genValidator());
+    for each (var widget in widgets) {
+	if (widget.required) {
+	    validators.push(widget.genValidator());
+	}
     }
+
+    validators.reverse();
     return validators;
 }
 
-this.getRenderedWidgets = function() {
+function getRenderedWidgets() {
     var output = [];
     var widgets = app.getObjects("XimpleFormWidget", {}, {sort:new Sort("rank", "asc"), path: this.path()});
 
