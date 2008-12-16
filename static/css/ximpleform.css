@@ -1,0 +1,7 @@
+.ximpleform fieldset {margin-bottom:10px;overflow:hidden;}
+.ximpleform label, .ximpleform input {float:left;}
+.ximpleform label {width: 150px;}
+.ximpleform input {width: 250px;}
+.ximpleform textarea{clear:both;width:500px;height:100px;}
+.ximpleform input[type="submit"],.ximpleform input[type="reset"] {margin-right:10px;width:52px;}
+.ximpleform .buttons {margin:0 auto;padding:0;}

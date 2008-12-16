@@ -1,0 +1,1 @@
+<link xmlns:tal="http://axiomstack.com/tale" type="text/css" rel="stylesheet" tal:attr="href: app.getStaticMountpoint()+'/css/ximpleform.css'" />

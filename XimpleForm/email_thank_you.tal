@@ -1,6 +1,8 @@
-<html>
-  <head></head>
+<html xmlns:tal="http://axiomstack.com/tale">
+  <head>
+    <title tal:text="$">Your recent submission: ${this.title}</title>
+  </head>
   <body>
-    Thanks!
+    <p tal:content="this.from_email_body"> </p>
   </body>
 </html>

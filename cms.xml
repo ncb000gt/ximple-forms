@@ -1,3 +1,4 @@
 <prototypes>
-  <prototype name="XimpleForm" displayname="Simple Form" />
+  <prototype name="XimpleForm" displayname="Simple Form"  addable="true" deletable="true" editable="true"/>
+  <prototype name="XimpleFormWidget" displayname="Simple Form Field" addable="false" deletable="false" editable="false"/>
 </prototypes>

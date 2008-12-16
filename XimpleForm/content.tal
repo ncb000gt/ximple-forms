@@ -2,11 +2,10 @@
   <ul class="errors" tal:if="session.data.errors &amp;&amp; session.data.errors[this.id]">
     <li tal:repeat="error: session.data.errors[this.id]" tal:content="error"></li>
   </ul>
-  <h2 tal:content-if="this.title"> </h2>
   <p tal:content-if="this.introduction"> </p>
   <form tal:attr="action: this.getURI()+'/process'" method="post">
     <fieldset tal:repeat="widget: this.getRenderedWidgets()" tal:replace="widget"> </fieldset>
-    <fieldset>
+    <fieldset class="buttons">
       <input type="hidden" id="ximple_postback" name="ximple_postback" value="true" />
       <input type="submit" id="submit" tal:attr="value: (this.submit_text||'Submit')" />
       <input type="reset" id="reset" tal:if="this.show_reset" tal:attr="value: (this.reset_text||'Reset')" />

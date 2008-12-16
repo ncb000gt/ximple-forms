@@ -211,6 +211,14 @@
       </fieldset>
 <fieldset>
 <h2>For the user</h2>
+<fieldset  class="ax-checkbox ax-send_recip_email" id="ax-send_recip_email">
+		<div> <div class="error_message">hidden error message</div>
+		<label for="send_recip_email_cb">Send Requester Email</label>
+		<input class="cb" id="send_recip_email_cb" onclick="if(this.checked) dojo.byId('send_recip_email').value='true'; else dojo.byId('send_recip_email').value='false'; axiom.dirtyProps['send_recip_email']=true;" xmlns:tal="http://axiomstack.com/tale" tal:attributes="checked this/send_recip_email" type="checkbox"/>
+		<input id="send_recip_email" name="send_recip_email" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.send_recip_email? true : false" type="hidden"/>
+		</div>
+		</fieldset>
+
 <fieldset class="ax-textbox ax-from_name" id="ax-from_name">
 		<div><div class="error_message">hidden error message </div>
 		<label for="from_name"><span class="required">*</span>Send Thank You From Name</label>
@@ -240,5 +248,35 @@
     //</script>
 
 	</fieldset>
+
+<fieldset  class="ax-wysiwyg ax-from_email_body" id="ax-from_email_body">
+		<div> <div class="error_message">hidden error message</div>
+		<label class="wysiwyg-label" for="from_email_body"><span class="required">*</span> Thank You Email Body  <a class="button form-button" onclick="axiom.loadFCKInstance('from_email_body','','','','','','');axiom.dirtyProps['from_email_body'] = true;">Edit</a>
+		          </label>
+        <iframe class="wysiwyg_preview" id="from_email_body_preview" xmlns:tal="http://axiomstack.com/tale" tal:attr="src: this.getURI('preview_property?property=from_email_body&amp;src_id=from_email_body')"/>
+        <textarea class="validate-empty" id="from_email_body" name="from_email_body" style="display:none"><span xmlns:tal="http://axiomstack.com/tale" tal:replace="this.from_email_body||''"/></textarea>
+		<div id="from_email_body_fckarea" style="display:none"><textarea id="from_email_body_fcktext"><span xmlns:tal="http://axiomstack.com/tale" tal:replace="this.from_email_body||''"/></textarea></div>
+		</div></fieldset>
+
+<fieldset  class="ax-refssp ax-to_email_field" id="ax-to_email_field">
+		<div> <div class="error_message">hidden error message</div>
+		<label for="to_email_field">Which field would you like to use?</label>
+		<div id="to_email_field_WRSS">Loading...</div>
+		<script xmlns:tal="http://axiomstack.com/tale" tal:text="$" type="text/javascript">//
+
+			dojo.require("axiom.widget.ReferenceSingleSelect");
+			window.wrmso_to_email_field = dojo.widget.createWidget('axiom:ReferenceSingleSelect',
+							 {appPath:'${root.getURI()}/',
+							  id:'to_email_field',
+							  objectHref:'${this.getURI()}/',
+							  refPath:'${this.referencePath('to_email_field');}',
+							  refTitle:'${this.referenceTitle('to_email_field');}',
+							  targetTypes: ${this.targetTypesJSON('to_email_field')}
+							 },
+							 dojo.byId('to_email_field_WRSS'));
+
+		      //</script>
+		</div>
+		</fieldset>
 </fieldset>
 </div></div>

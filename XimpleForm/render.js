@@ -42,18 +42,28 @@ function process() {
 	    );
         }
 
+	app.log(req.data.toSource());
+	app.log(req.data.http_referer.replace(/.*\/\/(.*[^\/:])(\/|:).*/,'$1'));
         var m = new axiom.Mail();
         m.setTo(this.recipient);
-        m.setFrom(this.from_address, this.from_name);
+        m.setFrom("noreply@"+req.data.http_referer.replace(/.*\/\/([^\/].*)\/.*/,'$1'), "XimpleForm Form Submission: " + this.title);
         m.setSubject(this.email_subject || this.title + ": Form Submission");
     var adds = (this.bcc_recipients)?this.bcc_recipients.split(",").map(function(e) {return e.trim();}):[];
         adds = (this.cc_recipients)?this.cc_recipients.split(",").map(function(e) {return e.trim();}):[];
         m.addPart(this.email({fields: email_lines}).toXMLString(), null, "text/html");
         m.send();
+
+	var user = new axiom.Mail();
+        user.setTo(this.recipient);
+        user.setFrom(this.from_address, this.from_name);
+        user.setSubject(this.title + ": Form Submission");
+        user.addPart(this.email({fields: email_lines}).toXMLString(), null, "text/html");
+        user.send();
+
         if (this.redirect_url) {
 	    res.redirect(this.redirect_url);
 	}
-	
+
 	delete session.data.errors[this.id];
     }
 }

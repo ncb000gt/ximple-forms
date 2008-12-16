@@ -1,6 +1,0 @@
-<html xmlns:tal="http://axiomstack.com/tale">
-  <head></head>
-  <body>
-    <div tal:content="this.content(data)"></div>
-  </body>
-</html>
