@@ -1,14 +1,14 @@
-<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
-    <label tal:attributes="for this/id">
-        <span tal:condition="this/required" class="required">*</span>
-        <span tal:replace="this/label"/>
+<fieldset xmlns:tal="http://axiomstack.com/tale">
+    <label tal:attr="'for': this.id" tal:text="$">
+        <span tal:id="this.required" class="required">*</span>
+        ${this.label}
     </label>
-    <input tal:attributes="name this/id; id this/id"/>
-    <script type="text/javascript">
+    <input tal:attr="'name': this.id, 'id': this.id"/>
+    <script type="text/javascript" tal:text="$">
         dojo.require("dojo.widget.DropdownDatePicker");
-        var widget = dojo.widget.createWidget("DropdownDatePicker", {inputName: "<span tal:replace="this/id"/>"}, dojo.byId("<span tal:replace="this/id"/>"));
+        var widget = dojo.widget.createWidget("DropdownDatePicker", {inputName: "${this.id}"}, dojo.byId("${this.id}"));
         var now = new Date();
-        widget.inputNode.value = "<span tal:condition="selection" tal:replace="selection"/>" || "<span tal:replace="this/values"/>" || [now.getMonth(), now.getDate(), now.getFullYear()].join("/");
-        widget.inputNode.id = "<span tal:replace="this/id"/>";
+        widget.inputNode.value = ("${data.selection||this.values}"||[now.getMonth(), now.getDate(), now.getFullYear()].join("/"));
+        widget.inputNode.id = "${this.id}";
     </script>
 </fieldset>

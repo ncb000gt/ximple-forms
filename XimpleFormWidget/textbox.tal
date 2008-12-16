@@ -1,7 +1,7 @@
-<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
-    <label tal:attributes="for this/id">
-        <span tal:condition="this/required" class="required">*</span>
-        <span tal:replace="this/label"/>
+<fieldset xmlns:tal="http://axiomstack.com/tale">
+    <label tal:attr="'for': this.id" tal:text="$">
+        <span tal:if="this.required" class="required">*</span>
+	${this.label}
     </label>
-    <input tal:attributes="name this/id; id this/id; value selection|?selection|:this/values|?this/values|:string:" type="text"/>
+    <input tal:attr="'name': this.id, 'id': this.id, value: data.selection||this.values||''" type="text" />
 </fieldset>

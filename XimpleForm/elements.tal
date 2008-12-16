@@ -1,3 +1,0 @@
-<fieldset xmlns:tal="http://axiomstack.com/tale">
-  <span tal:repeat="widget widgets" tal:replace="widget"/>
-</fieldset>

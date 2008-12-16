@@ -4,20 +4,19 @@ this.getSearchableProperties = function() {
 
 this.genValidation = function() {
     var validators = [];
-    var widgets = app.getObjects("SimpleFormWidget", {}, new Sort("rank", "asc"), this.path());
+    var widgets = app.getObjects("XimpleFormWidget", {}, {sort: new Sort("rank", "asc"), path: this.path()});
     for (var i in widgets) {
         validators.push(widgets[i].genValidator());
     }
     return validators;
 }
 
-this.genRenderedWidgets = function() {
-    var output = [], w;
-    var widgets = app.getObjects("SimpleFormWidget", {}, new Sort("rank", "asc"), this.path());
+this.getRenderedWidgets = function() {
+    var output = [];
+    var widgets = app.getObjects("XimpleFormWidget", {}, {sort:new Sort("rank", "asc"), path: this.path()});
 
-    for (var i in widgets) {
-        w = widgets[i];
-        output.push(w.render(req.get(w.id)));
+    for each (var widget in widgets) {
+        output.push(widget.render(req.get(widget.id)));
     }
     return output;
 }

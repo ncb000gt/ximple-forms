@@ -1,13 +1,13 @@
-<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+<fieldset xmlns:tal="http://axiomstack.com/tale">
   <div class="radio_buttons_sf">
-    <label>
-        <span tal:condition="this/required" class="required">*</span>
-        <span tal:replace="this/label"/>
+    <label tal:text="$">
+        <span tal:if="this.required" class="required">*</span>
+        ${this.label}
     </label>
     <div class="radio_fieldset">
-      <fieldset tal:repeat="option options">
-        <input tal:attributes="name this/id; id string:${this/id}_${option/value}; value option/value; checked option/checked" type="radio"/>
-        <label tal:attributes="for string:${this/id}_${option/value}" tal:content="option/title"> </label>
+      <fieldset tal:repeat="option: options" tal:var="o_id: this.id+'_'+option.value">
+        <input tal:attr="'name': this.id, 'id': o_id, value: option.value, checked: option.checked" type="radio"/>
+        <label tal:attr="'for': o_id" tal:content="option.title"> </label>
       </fieldset>
     </div>
   </div>

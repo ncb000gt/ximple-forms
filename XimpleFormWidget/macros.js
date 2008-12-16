@@ -7,30 +7,11 @@ this.genChoices = function() {
 }
 
 this.genOptions = function(selection) {
-    var options = [], values, v, i;
-    if (this.input_type == "state_dropdown") {
-		/*
-        values = app.getObjects("IMISStateCodes", {}, new Sort({title: "ASC"}));
-        for (i in values) {
-            v = values[i];
-            options.push({title: v.title, value: v._id});
-			
-        }*/
-		options = getIMISStates(selection);
-    } else if (this.input_type == "country_dropdown") {
-		/*
-        values = app.getObjects("IMISCountryNames", {}, new Sort({title: "ASC"}));
-        for (i in values) {
-            v = values[i];
-            options.push({title: v.title, value: v._id});
-        }*/
-		options = getIMISCountries(selection);
-    } else {
-        values = this.values.split("|");
-        for (i in values) {
-            v = values[i].trim();
-            options.push({title: v, value: v});
-        }
+    var options = [], v, i;
+    var values = this.values.split("|");
+    for (i in values) {
+        v = values[i].trim();
+	options.push({title: v, value: v});
     }
     if (selection) {
         if (typeof selection != "object") {
@@ -38,7 +19,7 @@ this.genOptions = function(selection) {
         }
         var decorated = 0;
         for (i in options) {
-            if (selection.contains(options[i].value)) {
+            if (selection.match(new RegExp("("+options[i].value+")"))) {
                 options[i].checked = "checked";
                 options[i].selected = "selected";
                 decorated++;
@@ -63,10 +44,10 @@ this.genValidator = function() {
         v["date"] = true;
     }
 
-    if (this.input_type.contains("dropdown") || this.input_type.contains("group") || this.input_type.contains("hidden")) {
+    if (this.input_type.match("dropdown") || this.input_type.match("group") || this.input_type.match("hidden")) {
         v.choices = this.genChoices();
 	v.error = "Please select an option for \"" + label + "\"";
-	if (this.input_type.contains('group')) v.vector = '1';
+	if (this.input_type.match('group')) v.vector = '1';
     } else {
         v.minlength = 1;
     }

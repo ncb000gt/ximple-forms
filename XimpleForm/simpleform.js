@@ -19,9 +19,7 @@ function editsimpleform() {
 	c.del();
     }
 
-    app.log(req.data.fields.toSource());
     for each (var field in req.data.fields) {
-	app.log(field.toSource());
         xfw = new XimpleFormWidget();
         xfw.label = field['name'];
         xfw.input_type = field['type'];
@@ -29,7 +27,6 @@ function editsimpleform() {
         xfw.values = field['value'];
         xfw.rank = parseInt(field['rank'], 10);
         this.add(xfw);
-        xfw.id = xfw._id;
+        xfw.id = xfw._id+'i';
     }
-
 }

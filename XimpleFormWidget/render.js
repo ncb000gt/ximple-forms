@@ -1,6 +1,6 @@
 function render(selection) {
     var data = {};
-    var is_list = this.input_type.contains("dropdown") || this.input_type.contains("group");
+    var is_list = this.input_type.match(/dropdown/) || this.input_type.match(/group/);
     if (selection) {
         data.selection = selection;
         if (is_list) {
@@ -10,7 +10,7 @@ function render(selection) {
         data.options = this.genOptions();
     }
     var template = this.input_type;
-    if (template.contains("dropdown")) {
+    if (template.match(/dropdown/)) {
         template = "dropdown";
     } else if (template == "email") {
         template = "textbox";

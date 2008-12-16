@@ -1,6 +1,6 @@
 /**
-Copyright Siteworx
-Dan Pozmanter
+Copyright Axiom Software
+Dan Pozmanter/Nick Campbell
 */
 
 dojo.provide("axiom.widget.SimpleFormBuilder");
@@ -28,12 +28,12 @@ dojo.widget.defineWidget(
 		    {value:'heading',opt:'Heading'},
 		    {value:'body',opt:'Body'},
 		    {value:'dropdown',opt:'Drop-Down List'},
-		    {value:'state_dropdown',opt:'State Drop-Down List'},
-		    {value:'country_dropdown',opt:'Country Drop-Down List'},
+		    /*{value:'state_dropdown',opt:'State Drop-Down List'},
+		    {value:'country_dropdown',opt:'Country Drop-Down List'},*/
 		    {value:'radio_button_group',opt:'Radio Button Group'},
 		    {value:'check_box_group',opt:'Check Box Group'},
 		    {value:'email',opt:'Email Address'},
-		    {value:'date',opt:'Date'},
+		    /*{value:'date',opt:'Date'},*/
 		    {value:'hidden',opt:'Hidden'}],
         templatePath:new dojo.uri.dojoUri('../axiom/widget/resources/SimpleFormBuilder.html'),
         updateButton:null,
@@ -57,12 +57,13 @@ dojo.widget.defineWidget(
         addFields:function(frows) {
 	    this.ranks = (frows.length || 1);
             for (var i=0;i<frows.length;i++) {
+		var fro = frows[i];
 		this.addField({
-				  name: frows[i]['name'],
-				  type: frows[i]['type'],
-				  value: frows[i]['value'],
-				  required: (frows[i]['required'] || null),
-				  rank: frows[i]['rank']
+				  name: fro['name'],
+				  type: fro['type'],
+				  value: fro['value'],
+				  required: (fro['required'] || null),
+				  rank: fro['rank']
 			      });
             }
             this.update(true);
@@ -70,10 +71,11 @@ dojo.widget.defineWidget(
         appendOptions:function(select, selected) {
             var opt = null;
             for (var i=0;i<this.inputTypes.length;i++) {
+		var inputType = this.inputTypes[i];
                 opt = document.createElement('option');
-                opt.value = this.inputTypes[i]['value'];
-		opt.innerHTML = this.inputTypes[i]['opt'];
-		if (selected && this.inputTypes[i]['value'] == selected) {
+                opt.value = inputType['value'];
+		opt.innerHTML = inputType['opt'];
+		if (selected && inputType['value'] == selected) {
 		    opt.selected = 'selected';
 		}
                 select.appendChild(opt);
@@ -81,15 +83,15 @@ dojo.widget.defineWidget(
         },
         getFieldValues:function() {
             var values = [];
-            var field = null;
             for(var i=0;i<this.fields.length;i++) {
-                if (this.fields[i]['name'].value!='') {
-                    field = {'name':this.fields[i]['name'].value,
-			     'type':this.fields[i]['type'].options[this.fields[i]['type'].selectedIndex].value,
-			     'value':this.fields[i]['value'].value,
-			     'required':this.fields[i]['required'].checked,
-			     'rank':this.fields[i]['rank'].options[this.fields[i]['rank'].selectedIndex].value};
-                    values.splice(values.length, 0, field);
+		var field = this.fields[i];
+                if (field['name'].value!='') {
+                    var f = {'name':field['name'].value,
+			     'type':field['type'].options[field['type'].selectedIndex].value,
+			     'value':field['value'].value,
+			     'required':field['required'].checked,
+			     'rank':field['rank'].options[field['rank'].selectedIndex].value};
+                    values.splice(values.length, 0, f);
                 }
             }
             return values;

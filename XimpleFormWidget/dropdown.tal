@@ -1,10 +1,10 @@
-<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
-    <label tal:attributes="for this/id">
-        <span tal:condition="this/required" class="required">*</span>
-        <span tal:replace="this/label"/>
+<fieldset xmlns:tal="http://axiomstack.com/tale">
+    <label tal:attr="'for': this.id" tal:text="$">
+        <span tal:if="this.required" class="required">*</span>
+        ${this.label}
     </label>
-    <select tal:attributes="name this/id; id this/id">
+    <select tal:attr="'name': this.id, 'id': this.id">
         <option value="">--Select One--</option>
-        <option tal:repeat="option options" tal:content="option/title" tal:attributes="value option/value; selected option/selected"></option>
+        <option tal:repeat="option: options" tal:content="option.title" tal:attr="value: option.value, selected: option.selected"></option>
     </select>
 </fieldset>

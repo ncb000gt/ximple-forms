@@ -1,6 +1,6 @@
-<fieldset xmlns:tal="http://xml.zope.org/namespaces/tal">
+<fieldset xmlns:tal="http://axiomstack.com/tale">
     <h3>
-        <span tal:replace="this/label"/>
-        <span tal:replace="this/values"/>
+        <span tal:replace="this.label"/>
+        <span tal:replace="this.values"/>
     </h3>
 </fieldset>

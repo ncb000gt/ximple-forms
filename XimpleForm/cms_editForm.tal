@@ -1,8 +1,10 @@
 <div xmlns:tal="http://axiomstack.com/tale"><div class="subform">
-<fieldset  class="ax-textbox ax-title" id="ax-title">
+<fieldset>
+<h2>Page Information</h2>
+<fieldset class="ax-textbox ax-title" id="ax-title">
 		<div><div class="error_message">hidden error message </div>
 		<label for="title"><span class="required">*</span>Title</label>
-		<input class="validate-empty" id="title" name="title" onkeyup="dojo.widget.byNode(dojo.byId('_location').parentNode).populate(this.value)" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.title" type="text"/>
+		<input class="validate-empty" id="title" name="title" onkeyup="dojo.widget.byNode(dojo.byId('_location').parentNode).populate(this.value)" tal:attr="value: this.title" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('title'),
@@ -14,11 +16,11 @@
 
 	</fieldset>
 
- <fieldset  class="ax-_location" id="ax-_location">
+ <fieldset class="ax-_location" id="ax-_location">
         <div><div class="error_message">hidden error message </div>
         <label for="_location_widget">URL</label>
         <div id="_location_widget">Loading...</div>
-        <script xmlns:tal="http://axiomstack.com/tale" tal:text="$" type="text/javascript">//
+        <script tal:text="$" type="text/javascript">//
 
 	dojo.require("axiom.widget.LocationField");
 	var loc = dojo.widget.createWidget('axiom:LocationField',
@@ -34,13 +36,13 @@
     </div>
 		</fieldset>
 
-<fieldset  class="ax-wysiwyg ax-introduction" id="ax-introduction">
+<fieldset class="ax-wysiwyg ax-introduction" id="ax-introduction">
 		<div> <div class="error_message">hidden error message</div>
 		<label class="wysiwyg-label" for="introduction"> Introduction  <a class="button form-button" onclick="axiom.loadFCKInstance('introduction','','','p;h2;h3;h4;h6','','static/css/fckeditor.css','');axiom.dirtyProps['introduction'] = true;">Edit</a>
 		          </label>
-        <iframe class="wysiwyg_preview" id="introduction_preview" xmlns:tal="http://axiomstack.com/tale" tal:attr="src: this.getURI('preview_property?property=introduction&amp;src_id=introduction')">.</iframe>
-        <textarea id="introduction" name="introduction" style="display:none"><span xmlns:tal="http://axiomstack.com/tale" tal:replace="this.introduction||''"/> </textarea>
-		<div id="introduction_fckarea" style="display:none"><textarea id="introduction_fcktext"><span xmlns:tal="http://axiomstack.com/tale" tal:replace="this.introduction||''"/></textarea></div>
+        <iframe class="wysiwyg_preview" id="introduction_preview" tal:attr="src: this.getURI('preview_property?property=introduction&amp;src_id=introduction')">.</iframe>
+        <textarea id="introduction" name="introduction" style="display:none"><span tal:replace="this.introduction||''"/> </textarea>
+		<div id="introduction_fckarea" style="display:none"><textarea id="introduction_fcktext"><span tal:replace="this.introduction||''"/></textarea></div>
 		</div></fieldset>
 
 		<fieldset>
@@ -48,7 +50,7 @@
 		  <fieldset class="ax-refomsp ax-widgets" id="ax-widgets">
 		    <div class="error_message">hidden error message</div>
 		    <div id="widgets_sfb">SimpleFormBuilder</div>
-		    <script type="text/javascript" tal:text="$"> 
+		    <script tal:text="$" type="text/javascript"> 
 		      dojo.require("axiom.widget.SimpleFormBuilder");
 		      var sfb_widgets = dojo.widget.createWidget('axiom:SimpleFormBuilder', {
 		      appPath:'${this.getURI()}/',
@@ -63,19 +65,58 @@
 		  </fieldset>
 		</fieldset>
 
-<fieldset  class="ax-wysiwyg ax-boilerplate" id="ax-boilerplate">
+<fieldset class="ax-wysiwyg ax-boilerplate" id="ax-boilerplate">
 		<div> <div class="error_message">hidden error message</div>
 		<label class="wysiwyg-label" for="boilerplate"> Boilerplate  <a class="button form-button" onclick="axiom.loadFCKInstance('boilerplate','','','p;h2;h3;h4;h6','','','');axiom.dirtyProps['boilerplate'] = true;">Edit</a>
 		          </label>
-        <iframe class="wysiwyg_preview" id="boilerplate_preview" xmlns:tal="http://axiomstack.com/tale" tal:attr="src: this.getURI('preview_property?property=boilerplate&amp;src_id=boilerplate')">.</iframe>
-        <textarea id="boilerplate" name="boilerplate" style="display:none"><span xmlns:tal="http://axiomstack.com/tale" tal:replace="this.boilerplate||''"/> </textarea>
-		<div id="boilerplate_fckarea" style="display:none"><textarea id="boilerplate_fcktext"><span xmlns:tal="http://axiomstack.com/tale" tal:replace="this.boilerplate||''"/></textarea></div>
+        <iframe class="wysiwyg_preview" id="boilerplate_preview" tal:attr="src: this.getURI('preview_property?property=boilerplate&amp;src_id=boilerplate')">.</iframe>
+        <textarea id="boilerplate" name="boilerplate" style="display:none"><span tal:replace="this.boilerplate||''"/> </textarea>
+		<div id="boilerplate_fckarea" style="display:none"><textarea id="boilerplate_fcktext"><span tal:replace="this.boilerplate||''"/></textarea></div>
 		</div></fieldset>
 
-<fieldset  class="ax-textbox ax-recipient" id="ax-recipient">
+<fieldset  class="ax-urlselect ax-redirect_url" id="ax-redirect_url">
+			 <div> <div class="error_message">hidden error message</div>
+		<label for="redirect_url">On submission, redirect user to</label>
+		<input id="redirect_url" name="redirect_url" onchange="axiom.dirtyProps['redirect_url']=true" readonly="true" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.redirect_url" type="text"/> <img id="icon_redirect_url" onclick="urlselectredirect_url.open();" xmlns:tal="http://axiomstack.com/tale" tal:attr="src: app.getStaticMountpoint('axiom/images/icon_link.gif')"/> <a class="button form-button" href="javascript:void(0);" onclick="urlselectredirect_url.clear();">Clear</a>
+		<script xmlns:tal="http://axiomstack.com/tale" tal:text="$" type="text/javascript">//
+
+				window.urlselectredirect_url = {
+					host:'${root.getURI()}/',
+					clear:function() {
+						dojo.byId('redirect_url').value = '';
+						axiom.dirtyProps['redirect_url'] = true;
+					},
+					open:function() {
+						axiom.browsetable.multiple = false;
+						axiom.browsetable.property = 'redirect_url';
+						axiom.browsetable.defaultValue = '${this.redirect_url}';
+						axiom.browsetable.defaultValues = [];
+						axiom.browsetable.setCallBack = function(a,b){
+							var url = b[1].uri;
+							dojo.byId('redirect_url').value = url;
+							axiom.dirtyProps['redirect_url'] = true;
+						}
+						axiom.browsetable.exitCallBack = function(){axiom.browsemodal.hide();}
+						axiom.browsetable.callingWidget = this;
+						axiom.browsetable.searchURL = '/' + axiom.ctable.searchURL;
+						axiom.browsetable.setContext('urlselect');
+						axiom.browsetable.toggleHrefValues();
+						axiom.browsecfilter.setTargetTypes({'All': []});
+						axiom.browsecfilter.search();
+						axiom.browsemodal.show();
+					}
+				};
+
+				//</script>
+			</div>
+		</fieldset>
+</fieldset>
+<fieldset>
+<h2>For you</h2>
+<fieldset class="ax-textbox ax-recipient" id="ax-recipient">
 		<div><div class="error_message">hidden error message </div>
 		<label for="recipient"><span class="required">*</span>Mail Form To</label>
-		<input class="validate-empty" id="recipient" name="recipient" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.recipient" type="text"/>
+		<input class="validate-empty" id="recipient" name="recipient" tal:attr="value: this.recipient" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('recipient'),
@@ -87,10 +128,10 @@
 
 	</fieldset>
 
-<fieldset  class="ax-textbox ax-cc_recipients" id="ax-cc_recipients">
+<fieldset class="ax-textbox ax-cc_recipients" id="ax-cc_recipients">
 		<div><div class="error_message">hidden error message </div>
 		<label for="cc_recipients">CC Form To</label>
-		<input id="cc_recipients" name="cc_recipients" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.cc_recipients" type="text"/>
+		<input id="cc_recipients" name="cc_recipients" tal:attr="value: this.cc_recipients" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('cc_recipients'),
@@ -101,10 +142,10 @@
     //</script>
 
 	</fieldset>
-<fieldset  class="ax-textbox ax-bcc_recipients" id="ax-bcc_recipients">
+<fieldset class="ax-textbox ax-bcc_recipients" id="ax-bcc_recipients">
 		<div><div class="error_message">hidden error message </div>
 		<label for="bcc_recipients">BCC Form To</label>
-		<input id="bcc_recipients" name="bcc_recipients" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.bcc_recipients" type="text"/>
+		<input id="bcc_recipients" name="bcc_recipients" tal:attr="value: this.bcc_recipients" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('bcc_recipients'),
@@ -116,10 +157,10 @@
 
 	</fieldset>
 
-<fieldset  class="ax-textbox ax-email_subject" id="ax-email_subject">
+<fieldset class="ax-textbox ax-email_subject" id="ax-email_subject">
 		<div><div class="error_message">hidden error message </div>
 		<label for="email_subject">Email Subject Line</label>
-		<input id="email_subject" name="email_subject" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.email_subject" type="text"/>
+		<input id="email_subject" name="email_subject" tal:attr="value: this.email_subject" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('email_subject'),
@@ -131,10 +172,10 @@
 
 	</fieldset>
 
-<fieldset  class="ax-textbox ax-submit_text" id="ax-submit_text">
+<fieldset class="ax-textbox ax-submit_text" id="ax-submit_text">
 		<div><div class="error_message">hidden error message </div>
 		<label for="submit_text">Submit Form Button Label</label>
-		<input id="submit_text" name="submit_text" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.submit_text" type="text"/>
+		<input id="submit_text" name="submit_text" tal:attr="value: this.submit_text" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('submit_text'),
@@ -145,10 +186,10 @@
     //</script>
 
 	</fieldset>
-<fieldset  class="ax-textbox ax-reset_text" id="ax-reset_text">
+<fieldset class="ax-textbox ax-reset_text" id="ax-reset_text">
 		<div><div class="error_message">hidden error message </div>
 		<label for="reset_text">Reset Form Button Label</label>
-		<input id="reset_text" name="reset_text" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.reset_text" type="text"/>
+		<input id="reset_text" name="reset_text" tal:attr="value: this.reset_text" type="text"/>
 		</div>
 		<script type="text/javascript">//
         dojo.event.kwConnect({ srcObj: dojo.byId('reset_text'),
@@ -160,25 +201,44 @@
 
 	</fieldset>
 
-<fieldset  class="ax-checkbox ax-show_reset" id="ax-show_reset">
+<fieldset class="ax-checkbox ax-show_reset" id="ax-show_reset">
 		<div> <div class="error_message">hidden error message</div>
 		<label for="show_reset_cb">Show Reset?</label>
-		<input class="cb" id="show_reset_cb" onclick="if(this.checked) dojo.byId('show_reset').value='true'; else dojo.byId('show_reset').value='false'; axiom.dirtyProps['show_reset']=true;" xmlns:tal="http://axiomstack.com/tale" tal:attributes="checked this/show_reset" type="checkbox"/>
-		<input id="show_reset" name="show_reset" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.show_reset? true : false" type="hidden"/>
+		<input class="cb" id="show_reset_cb" onclick="if(this.checked) dojo.byId('show_reset').value='true'; else dojo.byId('show_reset').value='false'; axiom.dirtyProps['show_reset']=true;" tal:attributes="checked this/show_reset" type="checkbox"/>
+		<input id="show_reset" name="show_reset" tal:attr="value: this.show_reset? true : false" type="hidden"/>
 		</div>
 		</fieldset>
-
-<fieldset  class="ax-textbox ax-report_title" id="ax-report_title">
+      </fieldset>
+<fieldset>
+<h2>For the user</h2>
+<fieldset class="ax-textbox ax-from_name" id="ax-from_name">
 		<div><div class="error_message">hidden error message </div>
-		<label for="report_title">Report Title</label>
-		<input id="report_title" name="report_title" xmlns:tal="http://axiomstack.com/tale" tal:attr="value: this.report_title" type="text"/>
+		<label for="from_name"><span class="required">*</span>Send Thank You From Name</label>
+		<input class="validate-empty" id="from_name" name="from_name" tal:attr="value: this.from_name" type="text"/>
 		</div>
 		<script type="text/javascript">//
-        dojo.event.kwConnect({ srcObj: dojo.byId('report_title'),
+        dojo.event.kwConnect({ srcObj: dojo.byId('from_name'),
 							   srcFunc: 'onchange',
   							   adviceFunc: function(evt){ axiom.dirtyProps[ evt.target['name'] ] = true; }
   							 });
 
     //</script>
 
-	</fieldset></div></div>
+	</fieldset>
+
+<fieldset class="ax-textbox ax-from_address" id="ax-from_address">
+		<div><div class="error_message">hidden error message </div>
+		<label for="from_address"><span class="required">*</span>Send Thank You From Address</label>
+		<input class="validate-empty" id="from_address" name="from_address" tal:attr="value: this.from_address" type="text"/>
+		</div>
+		<script type="text/javascript">//
+        dojo.event.kwConnect({ srcObj: dojo.byId('from_address'),
+							   srcFunc: 'onchange',
+  							   adviceFunc: function(evt){ axiom.dirtyProps[ evt.target['name'] ] = true; }
+  							 });
+
+    //</script>
+
+	</fieldset>
+</fieldset>
+</div></div>
