@@ -10,6 +10,7 @@ function preview() {
 function process() {
     var rules = this.genValidation();
     var errors = validate(rules, req.data);
+
     if (errors) {
         if (!session.data.errors) {
 	    session.data.errors = {};
@@ -64,5 +65,6 @@ function process() {
 	}
 
 	delete session.data.errors[this.id];
+	delete session.data.ximple_postback;
     }
 }
