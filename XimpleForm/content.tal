@@ -1,5 +1,5 @@
 <div xmlns:tal="http://axiomstack.com/tale" class="ximpleform">
-  <ul class="errors" tal:if="session.data.errors &amp;&amp; session.data.errors[this.id]">
+  <ul class="errors" tal:if="session.data.errors && session.data.errors[this.id]">
     <li tal:repeat="error: session.data.errors[this.id]" tal:content="error"></li>
   </ul>
   <p tal:content-if="this.introduction"> </p>
