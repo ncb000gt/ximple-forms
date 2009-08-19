@@ -1,0 +1,46 @@
+--------------------
+What
+--------------------
+XimpleForms is a form generation tool built for use in Axiom CMS websites/applications.
+
+--------------------
+License
+--------------------
+XimpleForms is released under the GNU Affero General Public License.
+
+/**
+*    Creates a form generation tool that can be implemented anywhere from the Axiom CMS
+*    Copyright (C) 2009  Nicholas Campbell
+*
+*    This program is free software: you can redistribute it and/or modify
+*    it under the terms of the GNU Affero General Public License as
+*    published by the Free Software Foundation, either version 3 of the
+*    License, or (at your option) any later version.
+*
+*    This program is distributed in the hope that it will be useful,
+*    but WITHOUT ANY WARRANTY; without even the implied warranty of
+*    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*    GNU Affero General Public License for more details.
+*
+*    You should have received a copy of the GNU Affero General Public License
+*    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+--------------------
+Additional Credits
+--------------------
+Initial work on this module was done by Nicholas Campbell and Derik Stiller. Clientside work initially done by Dan Pozmanter.
+
+--------------------
+Usage
+--------------------
+To use this tool you should only have to do the following.
+
+- Put the files in the ximple-forms directory under modules.
+- Add 'ximple-forms' to your list of modules in your app.properties file for your application.
+- Create a XimpleForm prototype within your application and make sure that 'content' is called from within that prototypes main function.
+
+--------------------
+Skinning
+--------------------
+There is not yet a notion of a main wrapper function (tal or JS). Thus, you need to create one. I'll likely have to include one at some point so look for it in the future.
